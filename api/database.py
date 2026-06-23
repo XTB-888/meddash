@@ -6,7 +6,12 @@ db_path = os.environ.get('DATABASE_PATH')
 if db_path:
     DATABASE_PATH = db_path
 else:
-    DATABASE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'hospital.db')
+    # Railway 持久化存储路径
+    railway_volume = os.environ.get('RAILWAY_VOLUME_MOUNT_PATH')
+    if railway_volume:
+        DATABASE_PATH = os.path.join(railway_volume, 'hospital.db')
+    else:
+        DATABASE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'hospital.db')
 
 def get_db():
     conn = sqlite3.connect(DATABASE_PATH)
