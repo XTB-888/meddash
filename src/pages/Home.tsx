@@ -6,7 +6,7 @@ import AIChat from '../components/AIChat';
 import { api, DashboardParams, DashboardResponse } from '../lib/api';
 
 const Home: React.FC = () => {
-  const [data, setData] = useState<DashboardData | null>(null);
+  const [data, setData] = useState<DashboardResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAIChat, setShowAIChat] = useState(false);
   const [dateRange, setDateRange] = useState({ start: '', end: '' });

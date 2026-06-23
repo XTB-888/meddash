@@ -1,7 +1,12 @@
 import sqlite3
 import os
 
-DATABASE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'hospital.db')
+# 生产环境使用环境变量配置数据库路径
+db_path = os.environ.get('DATABASE_PATH')
+if db_path:
+    DATABASE_PATH = db_path
+else:
+    DATABASE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'hospital.db')
 
 def get_db():
     conn = sqlite3.connect(DATABASE_PATH)

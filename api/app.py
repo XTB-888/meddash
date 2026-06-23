@@ -12,7 +12,9 @@ env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 load_dotenv(env_path)
 
 app = Flask(__name__)
-CORS(app)
+# 生产环境 CORS 配置
+allowed_origins = os.environ.get('ALLOWED_ORIGINS', '*').split(',')
+CORS(app, origins=allowed_origins)
 
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(ai_query_bp)
