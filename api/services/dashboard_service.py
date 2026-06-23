@@ -89,7 +89,6 @@ def get_dashboard_data(start_date=None, end_date=None, department=None):
         WHERE o.date BETWEEN ? AND ?{dept_condition}
         GROUP BY d.id, d.name
         ORDER BY revenue DESC
-        LIMIT 5
     ''', params)
     departments = cursor.fetchall()
 
